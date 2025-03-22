@@ -1,0 +1,4 @@
+Hello, this is a test file.
+Spark is great for big data processing.
+Each line has a different length.
+Let's count the total number of characters!
