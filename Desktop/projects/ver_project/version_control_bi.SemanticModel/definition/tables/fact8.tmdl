@@ -1,23 +1,23 @@
-table fact7
+table fact8
 	lineageTag: 2560a076-7d8c-442c-90b2-1cb3d23c84aa
 
-	column version_change_v6
+	column version_change_v8
 		dataType: string
 		lineageTag: 298f428b-9457-411b-ab16-a1138de74e42
 		summarizeBy: none
-		sourceColumn: version_change_v6
+		sourceColumn: version_change_v8
 
 		annotation SummarizationSetBy = Automatic
 
-	column version_v6
+	column version_v8
 		dataType: string
 		lineageTag: fe11cf4a-ed7b-4124-9d5d-33ba2c7d8426
 		summarizeBy: none
-		sourceColumn: version_v6
+		sourceColumn: version_v8
 
 		annotation SummarizationSetBy = Automatic
 
-	partition fact7 = m
+	partition fact8 = m
 		mode: import
 		source =
 				let
@@ -25,11 +25,9 @@ table fact7
 				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Column1", "version_change_v2"}}),
 				    #"Duplicated Column" = Table.DuplicateColumn(#"Renamed Columns", "version_change_v2", "version_change_v2 - Copy"),
-				    #"Renamed Columns1" = Table.RenameColumns(#"Duplicated Column",{{"version_change_v2 - Copy", "version_v6"}, {"version_change_v2", "version_change_v6"}})
+				    #"Renamed Columns1" = Table.RenameColumns(#"Duplicated Column",{{"version_change_v2 - Copy", "version_v8"}, {"version_change_v2", "version_change_v8"}})
 				in
 				    #"Renamed Columns1"
-
-	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 
