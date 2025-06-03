@@ -13,8 +13,7 @@
             "x": 0,
             "y": 0
           },
-          "nodeIndex": "table_matrix",
-          "nodeLineageTag": "2560a076-7d8c-442c-90b2-1cb3d23c84aa",
+          "nodeIndex": "fact",
           "size": {
             "height": 104,
             "width": 234
