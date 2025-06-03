@@ -1,4 +1,4 @@
-table fact
+table fact7
 	lineageTag: 2560a076-7d8c-442c-90b2-1cb3d23c84aa
 
 	column version_change_v6
@@ -17,7 +17,7 @@ table fact
 
 		annotation SummarizationSetBy = Automatic
 
-	partition fact = m
+	partition fact7 = m
 		mode: import
 		source =
 				let
@@ -28,6 +28,8 @@ table fact
 				    #"Renamed Columns1" = Table.RenameColumns(#"Duplicated Column",{{"version_change_v2 - Copy", "version_v6"}, {"version_change_v2", "version_change_v6"}})
 				in
 				    #"Renamed Columns1"
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 
