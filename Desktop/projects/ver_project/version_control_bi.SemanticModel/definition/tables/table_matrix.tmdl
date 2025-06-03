@@ -1,0 +1,35 @@
+table table_matrix
+	lineageTag: 2560a076-7d8c-442c-90b2-1cb3d23c84aa
+
+	column version_change_v3
+		dataType: string
+		lineageTag: 298f428b-9457-411b-ab16-a1138de74e42
+		summarizeBy: none
+		sourceColumn: version_change_v3
+
+		annotation SummarizationSetBy = Automatic
+
+	column new_COL_DUP
+		dataType: string
+		lineageTag: fe11cf4a-ed7b-4124-9d5d-33ba2c7d8426
+		summarizeBy: none
+		sourceColumn: new_COL_DUP
+
+		annotation SummarizationSetBy = Automatic
+
+	partition table_matrix = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Column1", "version_change_v2"}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Renamed Columns", "version_change_v2", "version_change_v2 - Copy"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Duplicated Column",{{"version_change_v2 - Copy", "new_COL_DUP"}, {"version_change_v2", "version_change_v3"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
